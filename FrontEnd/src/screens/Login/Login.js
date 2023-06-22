@@ -56,7 +56,7 @@ const LoginEvent = () => {
       ToastAndroid.show("데이터를 입력하세요", ToastAndroid.SHORT)
     }else{
       axios
-      .post(`http://10.0.0.2:8082/auth/login?device_token=20`, JSON.stringify(formdata), {
+      .post(`http://13.48.25.201:8082/auth/login`, JSON.stringify(formdata), {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',

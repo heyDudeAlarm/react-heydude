@@ -10,8 +10,26 @@ export default function Friends(props) {
     return [
       {
         key: 1,
-        name: "친구1",
+        name: "홍길동",
         message: "김씨요.",
+        profile_img: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      },
+      {
+        key: 2,
+        name: "홍길동",
+        message: "오늘은 진짜 expo키고 초심지킨다",
+        profile_img: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      },
+      {
+        key: 3,
+        name: "하진",
+        message: "김씨요.",
+        profile_img: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      },
+      {
+        key: 4,
+        name: "홍길동",
+        message: "오늘은 진짜 프로젝트 시작한다",
         profile_img: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
       },
     ];

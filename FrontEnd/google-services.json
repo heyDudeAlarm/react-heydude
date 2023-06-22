@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "783196079785",
+    "project_id": "reactnativeheydude",
+    "storage_bucket": "reactnativeheydude.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783196079785:android:8536a0f1d1e715a3518bb8",
+        "android_client_info": {
+          "package_name": "com.fastcat2.heydude"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "783196079785-iiiie8jpv2ug70hgfm9o1odkh0r5loqn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fastcat2.heydude",
+            "certificate_hash": "6fcc007377ff61fda34e351e2fe441e842ade06f"
+          }
+        },
+        {
+          "client_id": "783196079785-177sd9oqnc3si5ea07kma82pgr2erslb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvzIivc0PzVhlqPxcTjog1r2X7mjs_Wag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "783196079785-177sd9oqnc3si5ea07kma82pgr2erslb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

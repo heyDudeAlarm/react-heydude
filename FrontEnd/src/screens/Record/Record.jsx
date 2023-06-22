@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Text, View, ToastAndroid } from 'react-native';
+import { StyleSheet, Button, Text, View, ToastAndroid, TouchableOpacity, Image } from 'react-native';
 import { Audio } from 'expo-av';
 import * as FileSystem from 'expo-file-system';
 import { Asset } from 'expo-asset';
@@ -39,9 +39,9 @@ async function uploadAudio(){
     method: "post",
     // url: `http://10.0.2.2:8082/audio/upload/${userID}`,
     // url: `http://127.0.0.1:8082/audio/upload`,
-    // url: `http://10.96.123.85:8082/audio/upload`,
     // url: `http://10.96.123.85:8082/audio/upload/${userID}`,
     // url: `http://localhost:8082/audio/upload/${userID}`,
+    url: `http://13.48.25.201:8082/audio/upload?${userID}`,
     mode: "cors",
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -111,7 +111,7 @@ async function stopRecording() {
     axios({
       method: "post",
       // url: `http://localhost:8082/audio/download?filename=${filename}`,
-      url: `http://10.0.0.2:8082/audio/download?filename=audio_4`,
+      url: `http://13.48.25.201:8082/audio/download?filename=audio_4`,
       mode: "cors",
       headers: {
         'Content-Type': 'audio/mp3',
@@ -136,16 +136,60 @@ async function stopRecording() {
   }
 
   return (
-    <View>
-      {recording ? (
-        <Button title="녹음 중지" onPress={stopRecording} />
-      ) : (
-        <Button title="녹음 시작" onPress={startRecording} />
-      )}
+    <View style={styles.container}>
+      <View style={{display: 'flex', flexDirection:'row', alignItems: 'center', gap: 50}}>
+        {recording ? (
+          <TouchableOpacity
+          onPress={stopRecording}>
+          <Image
+            style={{
+              width: 100,
+              height: 100,
+              overflow: 'hidden',
+            }}
+            source={require('../../assets/startRecordBtn.png')}
+          />
+        </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+          onPress={startRecording}>
+          <Image
+            style={{
+              width: 100,
+              height: 100,
+              overflow: 'hidden',
+            }}
+            source={require('../../assets/recordBtn.png')}
+          />
+        </TouchableOpacity>
+        )}
+        {uri && <TouchableOpacity
+          onPress={playRecording}>
+          <Image
+            style={{
+              width: 50,
+              height: 50,
+              overflow: 'hidden',
+            }}
+            source={require('../../assets/playBtn.png')}
+          />
+        </TouchableOpacity>}
+      </View>
+      {uri && <Text style={{fontSize: 30}}>녹음시간: {duration}</Text>}
       <Button title="오디오 upload" onPress={uploadAudio} />
-      {uri && <Button title="녹음 재생" onPress={playRecording} />}
-      {uri && <Text>녹음시간: {duration}</Text>}
       <Button title="오디오 download" onPress={downloadAudio} />
+      <Text style={{color: 'red'}}>오디오 업로드, 다운로드 부분에서 오류가 있습니다! 양해부탁드립니다</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    rowGap: 40,
+  },
+})

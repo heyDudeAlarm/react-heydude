@@ -5,69 +5,44 @@ import {
   TouchableOpacity,
   StyleSheet,
   StatusBar,
+  useWindowDimensions
 } from 'react-native';
-import { TabView, SceneMap } from 'react-native-tab-view';
+import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
 import RecordListScreen from './Record/RecordListScreen'
 import Friends from './Friends/Friends'
 
-const FirstRoute = () => (
-  <RecordListScreen />
-);
-const SecondRoute = () => (
-  <Friends />
-);
 
-export default class TabViewExample extends React.Component {
-  state = {
-    index: 0,
-    routes: [
-      { key: 'first', title: '모닝콜 보내기' },
-      { key: 'second', title: '모닝콜 요청하기' },
-    ],
-  };
+export default function TabViewExample(props) {
+  
+  const FirstRoute = () => (
+    <RecordListScreen toRecord={props.toRecord}/>
+  );
 
-  _handleIndexChange = (index) => this.setState({ index });
+  const SecondRoute = () => (
+    <Friends toAskrecord={props.toAskrecord}/>
+  );
 
-  _renderTabBar = (props) => {
-    const inputRange = props.navigationState.routes.map((x, i) => i);
-
-    return (
-      <View style={styles.tabBar}>
-        {props.navigationState.routes.map((route, i) => {
-          const opacity = props.position.interpolate({
-            inputRange,
-            outputRange: inputRange.map((inputIndex) =>
-              inputIndex === i ? 1 : 0.5
-            ),
-          });
-
-          return (
-            <TouchableOpacity
-              style={styles.tabItem}
-              onPress={() => this.setState({ index: i })}>
-              <Animated.Text style={{ opacity }}>{route.title}</Animated.Text>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    );
-  };
-
-  _renderScene = SceneMap({
+  const renderScene = SceneMap({
     first: FirstRoute,
     second: SecondRoute,
   });
 
-  render() {
-    return (
-      <TabView
-        navigationState={this.state}
-        renderScene={this._renderScene}
-        renderTabBar={this._renderTabBar}
-        onIndexChange={this._handleIndexChange}
-      />
-    );
-  }
+  const layout = useWindowDimensions();
+
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'first', title: '모닝콜 보내기' },
+    { key: 'second', title: '모닝콜 요청하기' },
+  ]);
+
+  return (
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={{ width: layout.width }}
+    />
+  );
 }
 
 const styles = StyleSheet.create({

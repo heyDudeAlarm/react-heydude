@@ -28,11 +28,10 @@ LogBox.ignoreAllLogs();//Ignore all log notifications
 const SCREEN_WIDTH = Dimensions.get("window").width; // 스크린가로사이즈를 가져옴
 const Stack = createStackNavigator();
 
-
 function WholeStack() {
   return (
     <Stack.Navigator
-      initialRouteName="ExpoNotiFCM"
+      initialRouteName="Login"
       options={{ headerShown: false }}
       screenOptions={{
         headerTitleAlign: "center",

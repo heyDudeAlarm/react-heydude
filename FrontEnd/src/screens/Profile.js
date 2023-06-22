@@ -24,8 +24,10 @@ function MyPage(props) {
       source={require('../../assets/mypageBack.png')} resizeMode="cover" style={styles.bgImage}>
       <Ionicons style={styles.settings} name="settings-outline" size={24} color="white" />
         <View style={styles.contents}>
-          <Image style={styles.profile} />
-          <Text style={styles.username}>{getStorage}</Text>
+          <Image 
+            src={'https://cdn-icons-png.flaticon.com/512/3135/3135715.png'}
+            style={styles.profile}/>
+          <Text style={styles.username} onPress={getStorage}>친구1</Text>
           <Text style={styles.email}></Text>
           {/* <Text style={styles.stateMess}>마이페이지 입니다~~~</Text> */}
         </View>
@@ -60,7 +62,6 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 50,
-    backgroundColor: 'red',
   },
   contents: {
     flex: 1,

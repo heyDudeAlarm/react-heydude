@@ -45,8 +45,8 @@ const TabNavigation = ({ navigation, route }) => {
       <Tab.Screen
         name="MorningCall"
         // component={RecordListScreen}
-        // children={()=><RecordListScreen toRecord={()=>{navigation.navigate("Record")}}/>}
-        component={MorningCall}
+        children={()=><MorningCall toRecord={()=>{navigation.navigate("Record")}} toAskrecord={()=>{navigation.navigate("AskRecord")}}/>}
+        // component={MorningCall}
         options={{
           tabBarIcon: (props) =>
             TabIcon({ ...props, name: "microphone-outline" }),
